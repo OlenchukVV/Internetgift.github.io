@@ -3,105 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Відображення зображення</title>
-    <title>Вибір Так або Ні</title>
+    <title>Ти любиш мене?)</title>
     <style>
         body {
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
             margin: 0;
-
-        img {
-            max-width: 50%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-padding: 0;
-            background-image: url('background.jpg'); /* Замініть на власний фон */
-            background-size: cover;
-            background-position: center;
-            color: black;
+            padding: 0;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
         }
+
         h1 {
-            font-size: 24px;
-            font-weight: bold;
-            color: black;
-            text-shadow: none;
-            margin-bottom: 20px;
+            text-align: center;
+            font-size: 48px;
+            color: #333;
         }
-        .gif-container {
-            margin-bottom: 20px;
-        }
+
         .button-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
-            position: relative;
+            margin-top: 50px;
         }
-        button {
-            font-size: 22px;
+
+        .button {
             padding: 15px 30px;
-            cursor: pointer;
-            background-color: red;
-            color: white;
+            font-size: 24px;
+            color: #fff;
             border: none;
-            border-radius: 5px;
-            transition: 0.3s;
+            border-radius: 8px;
+            cursor: pointer;
+            position: relative;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .yes {
+            background-color: #ff4d4d;
+        }
+
+        .no {
+            background-color: #ff4d4d;
             position: relative;
         }
-        button:hover {
-            background-color: darkred;
+
+        .no:hover {
+            transform: translateX(50px);
         }
-        #noButton {
-            position: absolute;
-        }
-        #result {
-            display: none;
-            margin-top: 20px;
-        }
-        @media (max-width: 600px) {
-            .button-container {
-                flex-direction: column;
-            }
+
+        .no:active {
+            transform: translateX(100px);
         }
     </style>
-    <script>
-        function moveButton() {
-            let button = document.getElementById("noButton");
-            let x = Math.random() * (window.innerWidth - button.offsetWidth - 20);
-            let y = Math.random() * (window.innerHeight - button.offsetHeight - 20);
-            button.style.left = x + "px";
-            button.style.top = y + "px";
-        }
-        function showGif() {
-            document.getElementById("result").style.display = "block";
-        }
-        document.addEventListener("DOMContentLoaded", function() {
-            let noButton = document.getElementById("noButton");
-            noButton.addEventListener("touchstart", moveButton);
-        });
-    </script>
 </head>
 <body>
-    <h1>Чи погоджуєтесь ви?</h1>
-    <div class="gif-container">
-        <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Котик" width="300">
-    </div>
+    <h1>Ты любишь меня?)</h1>
     <div class="button-container">
-        <button onclick="showGif()">Так</button>
-        <button id="noButton" onmouseover="moveButton()" ontouchstart="moveButton()">Ні</button>
+        <button class="button yes">Так</button>
+        <button class="button no">Ні</button>
     </div>
-    <div id="result">
-        <h2>Молодець!</h2>
-        <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Котик" width="300">
-    </div>
+
+    <script>
+        const noButton = document.querySelector('.no');
+
+        noButton.addEventListener('mouseover', () => {
+            noButton.style.transform = 'translateX(50px)';
+        });
+
+        noButton.addEventListener('click', (e) => {
+            e.preventDefault();
+        });
+    </script>
 </body>
 </html>
-
-         
