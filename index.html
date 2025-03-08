@@ -36,8 +36,6 @@
             align-items: center;
             gap: 20px;
             position: relative;
-            width: 600px; /* Збільшено розмір контейнера */
-            height: 200px; /* Збільшено висоту контейнера */
         }
         button {
             font-size: 22px;
@@ -55,7 +53,6 @@
         }
         #noButton {
             position: absolute;
-            left: 200px; /* Початкова позиція кнопки "Ні" */
         }
         #result {
             display: none;
@@ -64,55 +61,23 @@
         @media (max-width: 600px) {
             .button-container {
                 flex-direction: column;
-                width: 100%;
             }
         }
     </style>
     <script>
         function moveButton() {
             let button = document.getElementById("noButton");
-            let container = document.querySelector(".button-container");
-            let containerWidth = container.offsetWidth;
-            let containerHeight = container.offsetHeight;
-            let buttonWidth = button.offsetWidth;
-            let buttonHeight = button.offsetHeight;
-
-            // Обмеження для переміщення кнопки "Ні" в межах контейнера
-            let maxX = containerWidth - buttonWidth - 20;
-            let maxY = containerHeight - buttonHeight - 20;
-
-            // Випадкові координати в межах контейнера
-            let x = Math.random() * maxX;
-            let y = Math.random() * maxY;
-
-            // Перевірка на те, щоб кнопка "Ні" не накладалася на кнопку "Так"
-            let yesButton = document.querySelector("button");
-            let yesButtonRect = yesButton.getBoundingClientRect();
-            let noButtonRect = button.getBoundingClientRect();
-
-            // Якщо кнопки накладаються, переміщаємо кнопку "Ні"
-            while (noButtonRect.left < yesButtonRect.right && noButtonRect.right > yesButtonRect.left &&
-                   noButtonRect.top < yesButtonRect.bottom && noButtonRect.bottom > yesButtonRect.top) {
-                x = Math.random() * maxX;
-                y = Math.random() * maxY;
-                button.style.left = x + "px";
-                button.style.top = y + "px";
-                noButtonRect = button.getBoundingClientRect();
-            }
-
-            // Задаємо нові координати для кнопки
+            let x = Math.random() * (window.innerWidth - button.offsetWidth - 20);
+            let y = Math.random() * (window.innerHeight - button.offsetHeight - 20);
             button.style.left = x + "px";
             button.style.top = y + "px";
         }
-
         function showGif() {
             document.getElementById("result").style.display = "block";
         }
-
         document.addEventListener("DOMContentLoaded", function() {
             let noButton = document.getElementById("noButton");
-            noButton.addEventListener("mouseover", moveButton); // Кнопка рухається при наведенні мишки
-            noButton.addEventListener("touchstart", moveButton); // Кнопка рухається при торканні на мобільних
+            noButton.addEventListener("touchstart", moveButton);
         });
     </script>
 </head>
@@ -123,7 +88,7 @@
     </div>
     <div class="button-container">
         <button onclick="showGif()">Так</button>
-        <button id="noButton">Ні</button>
+        <button id="noButton" onmouseover="moveButton()" ontouchstart="moveButton()">Ні</button>
     </div>
     <div id="result">
         <h2>Молодець!</h2>
