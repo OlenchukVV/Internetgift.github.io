@@ -94,6 +94,10 @@
             let randomX = Math.random() * (windowWidth - buttonRect.width);
             let randomY = Math.random() * (windowHeight - buttonRect.height);
 
+            // Обмежуємо координати, щоб кнопка не виходила за межі екрану
+            randomX = Math.max(0, Math.min(randomX, windowWidth - buttonRect.width));
+            randomY = Math.max(0, Math.min(randomY, windowHeight - buttonRect.height));
+
             // Переміщаємо кнопку в нові координати
             noButton.style.position = 'absolute';
             noButton.style.left = randomX + 'px';
