@@ -36,8 +36,8 @@
             align-items: center;
             gap: 20px;
             position: relative;
-            width: 500px; /* Можна змінити ширину цього контейнера */
-            height: 150px; /* Можна змінити висоту цього контейнера */
+            width: 600px; /* Збільшено розмір контейнера */
+            height: 200px; /* Збільшено висоту контейнера */
         }
         button {
             font-size: 22px;
@@ -55,6 +55,7 @@
         }
         #noButton {
             position: absolute;
+            left: 200px; /* Початкова позиція кнопки "Ні" */
         }
         #result {
             display: none;
@@ -63,7 +64,7 @@
         @media (max-width: 600px) {
             .button-container {
                 flex-direction: column;
-                width: 100%; /* Для маленьких екранів можна робити контейнер ширшим */
+                width: 100%;
             }
         }
     </style>
@@ -76,13 +77,28 @@
             let buttonWidth = button.offsetWidth;
             let buttonHeight = button.offsetHeight;
 
-            // Обмеження для переміщення кнопки "Ні" всередині контейнера
-            let maxX = containerWidth - buttonWidth - 30;
-            let maxY = containerHeight - buttonHeight - 30;
+            // Обмеження для переміщення кнопки "Ні" в межах контейнера
+            let maxX = containerWidth - buttonWidth - 20;
+            let maxY = containerHeight - buttonHeight - 20;
 
             // Випадкові координати в межах контейнера
             let x = Math.random() * maxX;
             let y = Math.random() * maxY;
+
+            // Перевірка на те, щоб кнопка "Ні" не накладалася на кнопку "Так"
+            let yesButton = document.querySelector("button");
+            let yesButtonRect = yesButton.getBoundingClientRect();
+            let noButtonRect = button.getBoundingClientRect();
+
+            // Якщо кнопки накладаються, переміщаємо кнопку "Ні"
+            while (noButtonRect.left < yesButtonRect.right && noButtonRect.right > yesButtonRect.left &&
+                   noButtonRect.top < yesButtonRect.bottom && noButtonRect.bottom > yesButtonRect.top) {
+                x = Math.random() * maxX;
+                y = Math.random() * maxY;
+                button.style.left = x + "px";
+                button.style.top = y + "px";
+                noButtonRect = button.getBoundingClientRect();
+            }
 
             // Задаємо нові координати для кнопки
             button.style.left = x + "px";
