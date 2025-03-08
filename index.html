@@ -39,7 +39,6 @@
             cursor: pointer;
             position: relative;
             margin: 10px;
-            transition: transform 0.3s ease;
         }
 
         .yes {
@@ -49,18 +48,18 @@
         .no {
             background-color: #ff4d4d;
             position: relative;
-            transition: transform 0.3s ease, left 0.3s ease, top 0.3s ease;
         }
 
-        .no:hover {
-            animation: moveAround 1.5s infinite;
+        .no.avoid {
+            position: absolute;
+            animation: moveAway 1s ease-in-out infinite;
         }
 
-        @keyframes moveAround {
+        @keyframes moveAway {
             0% { transform: translate(0, 0); }
-            25% { transform: translate(100px, 50px); }
-            50% { transform: translate(200px, -50px); }
-            75% { transform: translate(-100px, 100px); }
+            25% { transform: translate(120px, -80px); }
+            50% { transform: translate(-100px, 120px); }
+            75% { transform: translate(200px, 50px); }
             100% { transform: translate(0, 0); }
         }
     </style>
@@ -74,6 +73,14 @@
 
     <script>
         const noButton = document.querySelector('.no');
+
+        noButton.addEventListener('mouseover', () => {
+            noButton.classList.add('avoid');
+        });
+
+        noButton.addEventListener('mouseout', () => {
+            noButton.classList.remove('avoid');
+        });
 
         noButton.addEventListener('click', (e) => {
             e.preventDefault();
