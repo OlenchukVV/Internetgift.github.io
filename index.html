@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вибір Так або Ні</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        #noButton {
+            position: absolute;
+        }
+    </style>
+    <script>
+        function moveButton() {
+            let button = document.getElementById("noButton");
+            let x = Math.random() * (window.innerWidth - button.offsetWidth);
+            let y = Math.random() * (window.innerHeight - button.offsetHeight);
+            button.style.left = x + "px";
+            button.style.top = y + "px";
+        }
+    </script>
+</head>
+<body>
+    <h1>Чи погоджуєтесь ви?</h1>
+    <div class="button-container">
+        <button onclick="alert('Ви обрали Так!')">Так</button>
+        <button id="noButton" onmouseover="moveButton()">Ні</button>
+    </div>
+</body>
+</html>
