@@ -52,7 +52,7 @@
             background-color: darkred;
         }
         #noButton {
-            position: absolute;
+            position: relative;
         }
         #result {
             display: none;
@@ -67,17 +67,28 @@
     <script>
         function moveButton() {
             let button = document.getElementById("noButton");
-            let x = Math.random() * (window.innerWidth - button.offsetWidth - 20);
-            let y = Math.random() * (window.innerHeight - button.offsetHeight - 20);
+            let windowWidth = window.innerWidth;
+            let windowHeight = window.innerHeight;
+            let buttonWidth = button.offsetWidth;
+            let buttonHeight = button.offsetHeight;
+
+            // Обмеження для переміщення кнопки "Ні" в межах екрана
+            let x = Math.random() * (windowWidth - buttonWidth - 20);
+            let y = Math.random() * (windowHeight - buttonHeight - 20);
+
+            // Задаємо нові координати для кнопки
             button.style.left = x + "px";
             button.style.top = y + "px";
         }
+
         function showGif() {
             document.getElementById("result").style.display = "block";
         }
+
         document.addEventListener("DOMContentLoaded", function() {
             let noButton = document.getElementById("noButton");
-            noButton.addEventListener("touchstart", moveButton);
+            noButton.addEventListener("mouseover", moveButton); // Кнопка рухається при наведенні мишки
+            noButton.addEventListener("touchstart", moveButton); // Кнопка рухається при торканні на мобільних
         });
     </script>
 </head>
@@ -88,7 +99,7 @@
     </div>
     <div class="button-container">
         <button onclick="showGif()">Так</button>
-        <button id="noButton" onmouseover="moveButton()" ontouchstart="moveButton()">Ні</button>
+        <button id="noButton">Ні</button>
     </div>
     <div id="result">
         <h2>Молодець!</h2>
