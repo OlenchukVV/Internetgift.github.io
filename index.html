@@ -36,6 +36,8 @@
             align-items: center;
             gap: 20px;
             position: relative;
+            width: 500px; /* Можна змінити ширину цього контейнера */
+            height: 150px; /* Можна змінити висоту цього контейнера */
         }
         button {
             font-size: 22px;
@@ -52,7 +54,7 @@
             background-color: darkred;
         }
         #noButton {
-            position: relative;
+            position: absolute;
         }
         #result {
             display: none;
@@ -61,20 +63,26 @@
         @media (max-width: 600px) {
             .button-container {
                 flex-direction: column;
+                width: 100%; /* Для маленьких екранів можна робити контейнер ширшим */
             }
         }
     </style>
     <script>
         function moveButton() {
             let button = document.getElementById("noButton");
-            let windowWidth = window.innerWidth;
-            let windowHeight = window.innerHeight;
+            let container = document.querySelector(".button-container");
+            let containerWidth = container.offsetWidth;
+            let containerHeight = container.offsetHeight;
             let buttonWidth = button.offsetWidth;
             let buttonHeight = button.offsetHeight;
 
-            // Обмеження для переміщення кнопки "Ні" в межах екрана
-            let x = Math.random() * (windowWidth - buttonWidth - 10);
-            let y = Math.random() * (windowHeight - buttonHeight - 10);
+            // Обмеження для переміщення кнопки "Ні" всередині контейнера
+            let maxX = containerWidth - buttonWidth - 20;
+            let maxY = containerHeight - buttonHeight - 20;
+
+            // Випадкові координати в межах контейнера
+            let x = Math.random() * maxX;
+            let y = Math.random() * maxY;
 
             // Задаємо нові координати для кнопки
             button.style.left = x + "px";
