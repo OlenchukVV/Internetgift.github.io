@@ -3,21 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>гей</title>
+    <title>Вибір Так або Ні</title>
     <style>
         body {
             text-align: center;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 50px;
         }
         .button-container {
             margin-top: 20px;
         }
         button {
-            font-size: 18px;
-            padding: 10px 20px;
+            font-size: 22px;
+            padding: 15px 30px;
             margin: 10px;
             cursor: pointer;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: darkred;
         }
         #noButton {
             position: absolute;
@@ -41,13 +49,13 @@
     </script>
 </head>
 <body>
-    <h1>Ти гей?</h1>
+    <h1>Чи погоджуєтесь ви?</h1>
     <div class="button-container">
         <button onclick="showGif()">Так</button>
         <button id="noButton" onmouseover="moveButton()">Ні</button>
     </div>
     <div id="result">
-        <h2>Я знав))</h2>
+        <h2>Молодець!</h2>
         <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Котик" width="300">
     </div>
 </body>
