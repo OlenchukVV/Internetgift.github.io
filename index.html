@@ -9,9 +9,19 @@
             text-align: center;
             font-family: 'Poppins', sans-serif;
             margin: 50px;
+            background-image: url('background.jpg'); /* Замініть на власний фон */
+            background-size: cover;
+            background-position: center;
+        }
+        h1 {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
         }
         .button-container {
             margin-top: 20px;
+            position: relative;
         }
         button {
             font-size: 22px;
@@ -23,6 +33,7 @@
             border: none;
             border-radius: 5px;
             transition: 0.3s;
+            position: relative;
         }
         button:hover {
             background-color: darkred;
@@ -33,6 +44,11 @@
         #result {
             display: none;
             margin-top: 20px;
+        }
+        @media (max-width: 600px) {
+            #noButton {
+                position: absolute;
+            }
         }
     </style>
     <script>
@@ -46,13 +62,17 @@
         function showGif() {
             document.getElementById("result").style.display = "block";
         }
+        document.addEventListener("DOMContentLoaded", function() {
+            let noButton = document.getElementById("noButton");
+            noButton.addEventListener("touchstart", moveButton);
+        });
     </script>
 </head>
 <body>
     <h1>Чи погоджуєтесь ви?</h1>
     <div class="button-container">
         <button onclick="showGif()">Так</button>
-        <button id="noButton" onmouseover="moveButton()">Ні</button>
+        <button id="noButton" onmouseover="moveButton()" ontouchstart="moveButton()">Ні</button>
     </div>
     <div id="result">
         <h2>Молодець!</h2>
