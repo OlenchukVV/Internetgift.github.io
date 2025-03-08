@@ -12,12 +12,20 @@
             background-image: url('background.jpg'); /* Замініть на власний фон */
             background-size: cover;
             background-position: center;
+            color: black;
         }
         h1 {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            color: black;
+            text-shadow: none;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .gif-container {
+            margin-top: 60px;
         }
         .button-container {
             margin-top: 20px;
@@ -70,13 +78,16 @@
 </head>
 <body>
     <h1>Чи погоджуєтесь ви?</h1>
+    <div class="gif-container">
+        <img src="https://i.gifer.com/ZBFI.gif" alt="Котик" width="300">
+    </div>
     <div class="button-container">
         <button onclick="showGif()">Так</button>
         <button id="noButton" onmouseover="moveButton()" ontouchstart="moveButton()">Ні</button>
     </div>
     <div id="result">
         <h2>Молодець!</h2>
-        <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Котик" width="300">
+        <img src="https://pa1.aminoapps.com/6868/d3147a5a35847da8b88ac8fa39886fc4603b36b7r1-302-320_hq.gif" alt="Котик" width="300">
     </div>
 </body>
 </html>
